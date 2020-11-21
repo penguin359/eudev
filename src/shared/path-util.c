@@ -28,6 +28,11 @@
 #include <dirent.h>
 #include <sys/statvfs.h>
 
+#include <linux/limits.h>
+#ifndef _PATH_MAX
+#define _PATH_MAX 4096
+#endif
+
 #include "macro.h"
 #include "util.h"
 #include "log.h"
@@ -96,6 +101,15 @@ char *path_make_absolute(const char *p, const char *prefix) {
                 return strdup(p);
 
         return strjoin(prefix, "/", p, NULL);
+}
+
+char *get_current_dir_name(void) {
+	char *path;
+	if((path = malloc(_PATH_MAX)) == NULL) {
+		return NULL;
+	}
+	getcwd(path, _PATH_MAX);
+	return path;
 }
 
 char *path_make_absolute_cwd(const char *p) {

@@ -111,7 +111,7 @@ static bool udev_has_devtmpfs(struct udev *udev) {
 
         union file_handle_union h = FILE_HANDLE_INIT;
         _cleanup_fclose_ FILE *f = NULL;
-        char line[LINE_MAX], *e;
+        char line[_POSIX2_LINE_MAX], *e;
         int mount_id;
         int r;
 

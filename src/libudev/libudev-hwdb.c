@@ -58,7 +58,7 @@ struct udev_hwdb {
 };
 
 struct linebuf {
-        char bytes[LINE_MAX];
+        char bytes[_POSIX2_LINE_MAX];
         size_t size;
         size_t len;
 };

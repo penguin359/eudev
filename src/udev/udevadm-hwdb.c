@@ -457,7 +457,7 @@ static int import_file(struct udev *udev, struct trie *trie, const char *filenam
                 HW_NONE,
         } state = HW_NONE;
         FILE *f;
-        char line[LINE_MAX];
+        char line[_POSIX2_LINE_MAX];
         struct udev_list match_list;
 
         udev_list_init(udev, &match_list, false);

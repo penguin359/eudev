@@ -825,7 +825,7 @@ int flush_fd(int fd) {
         };
 
         for (;;) {
-                char buf[LINE_MAX];
+                char buf[_POSIX2_LINE_MAX];
                 ssize_t l;
                 int r;
 
@@ -1405,6 +1405,7 @@ static const char* const sched_policy_table[] = {
 
 DEFINE_STRING_TABLE_LOOKUP_WITH_FALLBACK(sched_policy, int, INT_MAX);
 
+#define _RLIMIT_MAX 16
 static const char* const rlimit_table[_RLIMIT_MAX] = {
         [RLIMIT_CPU] = "LimitCPU",
         [RLIMIT_FSIZE] = "LimitFSIZE",
@@ -1430,7 +1431,7 @@ static const char* const ip_tos_table[] = {
         [IPTOS_LOWDELAY] = "low-delay",
         [IPTOS_THROUGHPUT] = "throughput",
         [IPTOS_RELIABILITY] = "reliability",
-        [IPTOS_LOWCOST] = "low-cost",
+        //[IPTOS_LOWCOST] = "low-cost",
 };
 
 DEFINE_STRING_TABLE_LOOKUP_WITH_FALLBACK(ip_tos, int, 0xff);

@@ -17,6 +17,7 @@
   along with systemd; If not, see <http://www.gnu.org/licenses/>.
 ***/
 
+extern char* program_invocation_short_name;
 #pragma once
 
 #include <fcntl.h>

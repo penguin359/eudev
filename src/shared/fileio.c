@@ -57,7 +57,7 @@ int write_string_file(const char *fn, const char *line) {
 }
 int read_one_line_file(const char *fn, char **line) {
         _cleanup_fclose_ FILE *f = NULL;
-        char t[LINE_MAX], *c;
+        char t[_POSIX2_LINE_MAX], *c;
 
         assert(fn);
         assert(line);
@@ -94,7 +94,7 @@ int read_full_stream(FILE *f, char **contents, size_t *size) {
         if (fstat(fileno(f), &st) < 0)
                 return -errno;
 
-        n = LINE_MAX;
+        n = _POSIX2_LINE_MAX;
 
         if (S_ISREG(st.st_mode)) {
 

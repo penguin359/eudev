@@ -297,6 +297,8 @@ static int write_to_console(
         return 1;
 }
 
+char *program_invocation_short_name = "progname";
+
 static int write_to_syslog(
                 int level,
                 int error,
@@ -476,7 +478,7 @@ int log_internalv(
         va_list ap) {
 
         PROTECT_ERRNO;
-        char buffer[LINE_MAX];
+        char buffer[_POSIX2_LINE_MAX];
 
         if (_likely_(LOG_PRI(level) > log_max_level))
                 return 0;
@@ -512,7 +514,7 @@ static void log_assert(
                 int line,
                 const char *func,
                 const char *format) {
-        static char buffer[LINE_MAX];
+        static char buffer[_POSIX2_LINE_MAX];
 
         if (_likely_(LOG_PRI(level) > log_max_level))
                 return;
